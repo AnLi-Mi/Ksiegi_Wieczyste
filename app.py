@@ -1,3 +1,12 @@
+from flask import Flask, render_template
+
+app=Flask(__name__)
+
+
+@app.route('/', methods=['GET', 'POST'])
+def home():
+    return render_template("index.html")
+
 # creating the dictionary with letters and digits as keys and thier encoding result as values
 def encoding_key_for_kw():
 
@@ -56,7 +65,10 @@ def decoding(numer_ksiegi, decoder):
     return sum(total)%10
 
 # request user to enter the string with base of Ksiega Wieczysta
-numer_ksiegiw=input("Wpisz number księgi wieczystej: ")
+#numer_ksiegiw=input("Wpisz number księgi wieczystej: ")
 
-#
-print (f"Cyfra kontrolna księgi wieczystej o numerze {numer_ksiegiw} to: {decoding(numer_ksiegiw, encoding_key_for_kw)}")
+
+#print (f"Cyfra kontrolna księgi wieczystej o numerze {numer_ksiegiw} to: {decoding(numer_ksiegiw, encoding_key_for_kw)}")
+
+if __name__ == "__main__":
+    app.run(debug=True)
