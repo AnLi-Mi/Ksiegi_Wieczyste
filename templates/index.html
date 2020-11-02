@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+
+<head>
+    <title>"Księgi Wieczyste"</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <h1> SPRAWDŻ NUMER KONTROLNY KSIĘGI WIECZYSTEJ </h1>
+    <div>
+        <form method='POST' action='/'>
+            Wpisz numer księgi wieczystej:</br></br>
+            <input name="numer_ksiegiw" type=text></br></br>
+            <button type='submit' value='submit'> Sprawdź </button>
+        </form>
+    </div>
+
+    <div>
+        {% if numer_ksiegiw, result %}
+            Numer kontrolny księgi {{numer_ksiegiw}} to {{result}}.
+        {% endif %}
+
+
+    </div>
+</body>

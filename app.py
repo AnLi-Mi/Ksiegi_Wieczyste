@@ -56,7 +56,7 @@ def decoding(numer_ksiegi, decoder):
     return sum(total)%10
 
 # request user to enter the string with base of Ksiega Wieczysta
-numer_ksiegiw=input("eneter the number: ")
+numer_ksiegiw=input("Wpisz number księgi wieczystej: ")
 
 #
-print (f"Ostatni numer podanej księgi wieczystej to: {decoding(numer_ksiegiw, encoding_key_for_kw)}")
+print (f"Cyfra kontrolna księgi wieczystej o numerze {numer_ksiegiw} to: {decoding(numer_ksiegiw, encoding_key_for_kw)}")
