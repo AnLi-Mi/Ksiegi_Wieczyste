@@ -1,11 +1,16 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app=Flask(__name__)
 
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    return render_template("index.html")
+    result = ''
+    numer_ksiegiw = ''
+    if request.method=="POST" and 'numer_ksiegiw' in request.form:
+        numer_ksiegiw = request.form.get('numer_ksiegiw')
+        result = decoding(numer_ksiegiw, encoding_key_for_kw)
+    return render_template("index.html", result = result, numer_ksiegiw=numer_ksiegiw)
 
 # creating the dictionary with letters and digits as keys and thier encoding result as values
 def encoding_key_for_kw():
