@@ -2,16 +2,17 @@
 import string
 
 #number_base = str(input("Wpisz postawę numeru księgi wieczystej: "))
-def creating_decoder():
+def ksiegi_decoding_key():
+
     letters= string.ascii_lowercase
-    key=[]
-    value=[]
+    entered_element=[]
+    returned_element=[]
 
     for letter in letters:
-        key.append(letter)
-        value.append(letters.index(letter)+1)
+        entered_element.append(letter)
+        returned_elemen.append(letters.index(letter)+1)
 
-    decoding_dict=dict(zip(key,value))
+    decoding_dict=dict(zip(entered_element,returned_elemen))
 
     for num in range (1,10):
         decoding_dict[str(num)]=num
@@ -20,21 +21,23 @@ def creating_decoder():
 
     return decoding_dict
 
-ksiega_wieczysta = 'kr/1468/anna'
-numerical = []
 
-for element in ksiega_wieczysta:
-    numerical.append(creating_decoder()[element])
+def decoding(numer_ksiegi, decoder):
 
-total = []
+    decoded_elements = []
 
-for num in numerical[0::3]:
-    total.append(num*1)
+    for element in numer_ksiegi:
+        decoded_elements.append(decoder()[element])
 
-for num in numerical[1::3]:
-    total.append(num*3)
+    total = []
 
-for num in numerical[2::3]:
-    total.append(num*7)
+    for num in decoded_elements[0::3]:
+        total.append(num*1)
 
-print (sum(total)%10)
+    for num in decoded_elements[1::3]:
+        total.append(num*3)
+
+    for num in decoded_elements[2::3]:
+        total.append(num*7)
+
+    return sum(total)%10
