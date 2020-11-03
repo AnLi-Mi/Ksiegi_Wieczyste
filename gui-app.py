@@ -62,7 +62,7 @@ def decoding(num_ksiegi, decoder):
 def finding_sad(num_ksiegi):
     kode = num_ksiegi[:4]
     kode = kode.upper()
-    return sady.kod_sad_dict[kode]
+    return f'Lokalizacja sądu: {sady.kod_sad_dict[kode]}'
 
 
 #------- Creating the GUI ----------------
@@ -85,13 +85,21 @@ user_input.pack()
 empty_row3 = Label (window)
 empty_row3.pack()
 
-def submit_button_action():
+def control_digit_button_action():
     ksiega_wieczysta=user_input.get()
     response = Label(window, text = decoding(ksiega_wieczysta, encoding_key_for_kw))
     response.pack()
 
-submit_button = Button (window, text = "Sprawdź cyfrę kontrolną", command = submit_button_action)
-submit_button.pack()
+def find_court_button_action():
+    ksiega_wieczysta=user_input.get()
+    response = Label(window, text = finding_sad(ksiega_wieczysta))
+    response.pack()
+
+control_digit_button = Button (window, text = "Sprawdź cyfrę kontrolną", command = control_digit_button_action)
+control_digit_button.pack()
+
+finding_court_button = Button (window, text = "Znajdż sąd", command = find_court_button_action)
+finding_court_button.pack()
 
 empty_row4 = Label (window)
 empty_row4.pack()
