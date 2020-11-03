@@ -69,7 +69,8 @@ user_input.pack()
 user_input.get()
 
 def submit_button_action():
-    response = Label(window, text = decoding("koko", encoding_key_for_kw))
+    ksiega_wieczysta=user_input.get()
+    response = Label(window, text = decoding(ksiega_wieczysta, encoding_key_for_kw))
     response.pack()
 
 submit_button = Button (window, text = "Sprawdź numer kontrolny", command = submit_button_action)
