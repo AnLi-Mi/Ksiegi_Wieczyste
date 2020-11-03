@@ -10,7 +10,11 @@ user_input = Entry (window)
 user_input.pack()
 user_input.get()
 
-submit_button = Button (window, text = "Sprawdź numer kontrolny")
+def submit_button_action():
+    response = Label(window, text = "Button-click response")
+    response.pack()
+
+submit_button = Button (window, text = "Sprawdź numer kontrolny", command = submit_button_action)
 submit_button.pack()
 
 window.mainloop()
