@@ -54,7 +54,7 @@ def decoding(numer_ksiegi, decoder):
 
     # return the rest from dividing by 10 the sum of all numbers
     # after specific multiplications
-    return f'Cyfra kontrolna księgi {numer_ksiegi} to {sum(total)%10}'
+    return f'Cyfra kontrolna księgi {numer_ksiegi!r} to {sum(total)%10}'
 
 #------- Creating the GUI ----------------
 
@@ -69,7 +69,7 @@ user_input.pack()
 user_input.get()
 
 def submit_button_action():
-    response = Label(window, text = "Button-click response")
+    response = Label(window, text = decoding("koko", encoding_key_for_kw))
     response.pack()
 
 submit_button = Button (window, text = "Sprawdź numer kontrolny", command = submit_button_action)
