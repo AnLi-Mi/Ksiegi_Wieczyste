@@ -1,5 +1,7 @@
 from tkinter import *
 
+import sady
+
 def encoding_key_for_kw():
 
     #preparing lists of elemets before and after encoding
@@ -26,9 +28,9 @@ def encoding_key_for_kw():
     return decoding_dict
 
 # generating a last number of the Księga Wieczysta based on inputed base string
-def decoding(numer_ksiegi, decoder):
+def decoding(num_ksiegi, decoder):
     # editing users input so it's we can perform further operations on it
-    numer_ksiegi=numer_ksiegi.replace(" ", "")
+    numer_ksiegi=num_ksiegi.replace(" ", "")
     numer_ksiegi=numer_ksiegi.replace("/", "")
     numer_ksiegi=numer_ksiegi.lower()
 
@@ -54,26 +56,52 @@ def decoding(numer_ksiegi, decoder):
 
     # return the rest from dividing by 10 the sum of all numbers
     # after specific multiplications
-    return f'Cyfra kontrolna księgi {numer_ksiegi!r} to {sum(total)%10}'
+    return f'Cyfra kontrolna księgi {num_ksiegi!r} to {sum(total)%10}'
+
+
+def finding_sad(num_ksiegi):
+    kode = num_ksiegi[:4]
+    kode = kode.upper()
+    return f'Lokalizacja sądu: {sady.kod_sad_dict[kode]}'
+
 
 #------- Creating the GUI ----------------
 
 window = Tk()
 window.title("Księgi Wieczyste")
 
+empty_row1 = Label (window)
+empty_row1.pack()
+
 input_command = Label (window, text = "Wpisz bazę numeru Księgi Wieczystej: ")
 input_command.pack()
 
+empty_row2 = Label (window)
+empty_row2.pack()
+
 user_input = Entry (window)
 user_input.pack()
-user_input.get()
 
-def submit_button_action():
+empty_row3 = Label (window)
+empty_row3.pack()
+
+def control_digit_button_action():
     ksiega_wieczysta=user_input.get()
     response = Label(window, text = decoding(ksiega_wieczysta, encoding_key_for_kw))
     response.pack()
 
-submit_button = Button (window, text = "Sprawdź numer kontrolny", command = submit_button_action)
-submit_button.pack()
+def find_court_button_action():
+    ksiega_wieczysta=user_input.get()
+    response = Label(window, text = finding_sad(ksiega_wieczysta))
+    response.pack()
+
+control_digit_button = Button (window, text = "Sprawdź cyfrę kontrolną", command = control_digit_button_action)
+control_digit_button.pack()
+
+finding_court_button = Button (window, text = "Znajdż sąd", command = find_court_button_action)
+finding_court_button.pack()
+
+empty_row4 = Label (window)
+empty_row4.pack()
 
 window.mainloop()
