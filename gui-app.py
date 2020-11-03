@@ -1,5 +1,7 @@
 from tkinter import *
 
+import sady
+
 def encoding_key_for_kw():
 
     #preparing lists of elemets before and after encoding
@@ -55,6 +57,13 @@ def decoding(num_ksiegi, decoder):
     # return the rest from dividing by 10 the sum of all numbers
     # after specific multiplications
     return f'Cyfra kontrolna księgi {num_ksiegi!r} to {sum(total)%10}'
+
+
+def finding_sad(num_ksiegi):
+    kode = num_ksiegi[:4]
+    kode = kode.upper()
+    return sady.kod_sad_dict[kode]
+
 
 #------- Creating the GUI ----------------
 
