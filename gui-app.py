@@ -1,19 +1,5 @@
-from flask import Flask, render_template, request
+from tkinter import *
 
-
-app=Flask(__name__)
-
-
-@app.route('/', methods=['GET', 'POST'])
-def home():
-    result = ''
-    numer_ksiegiw = ''
-    if request.method=="POST" and 'numer_ksiegiw' in request.form:
-        numer_ksiegiw = request.form.get('numer_ksiegiw')
-        result = decoding(numer_ksiegiw, encoding_key_for_kw)
-    return render_template("index.html", result = result, numer_ksiegiw=numer_ksiegiw)
-
-# creating the dictionary with letters and digits as keys and thier encoding result as values
 def encoding_key_for_kw():
 
     #preparing lists of elemets before and after encoding
@@ -68,13 +54,26 @@ def decoding(numer_ksiegi, decoder):
 
     # return the rest from dividing by 10 the sum of all numbers
     # after specific multiplications
-    return sum(total)%10
+    return f'Cyfra kontrolna księgi {numer_ksiegi!r} to {sum(total)%10}'
 
-# request user to enter the string with base of Ksiega Wieczysta
-#numer_ksiegiw=input("Wpisz number księgi wieczystej: ")
+#------- Creating the GUI ----------------
 
+window = Tk()
+window.title("Księgi Wieczyste")
 
-#print (f"Cyfra kontrolna księgi wieczystej o numerze {numer_ksiegiw} to: {decoding(numer_ksiegiw, encoding_key_for_kw)}")
+input_command = Label (window, text = "Wpisz bazę numeru Księgi Wieczystej: ")
+input_command.pack()
 
-if __name__ == "__main__":
-    app.run(debug=True)
+user_input = Entry (window)
+user_input.pack()
+user_input.get()
+
+def submit_button_action():
+    ksiega_wieczysta=user_input.get()
+    response = Label(window, text = decoding(ksiega_wieczysta, encoding_key_for_kw))
+    response.pack()
+
+submit_button = Button (window, text = "Sprawdź numer kontrolny", command = submit_button_action)
+submit_button.pack()
+
+window.mainloop()
