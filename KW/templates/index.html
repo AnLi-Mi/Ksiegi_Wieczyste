@@ -3,23 +3,26 @@
 <head>
     <title>"Księgi Wieczyste"</title>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css" integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
 </head>
 
 <body>
-    <h1> SPRAWDŻ NUMER KONTROLNY KSIĘGI WIECZYSTEJ </h1>
     <div>
-        <form method='POST' action='/'>
+        <form style="font-weight: 700; padding-top: 30px;" class="pure-form" method='POST' action='/'>
             Wpisz numer księgi wieczystej:</br></br>
-            <input name="numer_ksiegiw" type=text></br></br>
-            <button type='submit' value='submit'> Sprawdź </button>
-        </form>
+            <input style="margin-left: auto; margin-right: auto;"class="pure-input-rounded" name="numer_ksiegiw" type=text></br></br>
+            <button class="button-warning" type='submit' value='submit'> Sprawdź </button>
+        </form> </br></br>
     </div>
 
     <div>
-        {% if numer_ksiegiw, result %}
-            Numer kontrolny księgi {{numer_ksiegiw}} to {{result}}.
+        {% if numer_ksiegiw, result, sad %}
+        <p >    {{result}}</br>
+
+            {{sad}} </p>
         {% endif %}
-
-
     </div>
 </body>
