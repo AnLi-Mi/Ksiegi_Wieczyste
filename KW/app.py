@@ -74,9 +74,14 @@ def decoding(numer_ksiegi, decoder):
     # after specific multiplications
     return sum(total)%10
 
-def find_court(num_ksiegi):
+
+def court_kode(num_ksiegi):
     kode=num_ksiegi[:4]
-    kode=kode.upper()
+    return kode=kode.upper()
+    
+
+def find_court(num_ksiegi):
+    kode = court_kode(num_ksiegi)
     return sady.kod_sad_dict[kode]
 
 
