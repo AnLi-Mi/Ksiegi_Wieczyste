@@ -13,6 +13,7 @@ def home():
     
     if request.method=="POST" and 'numer_ksiegiw' in request.form:
         numer_ksiegiw = request.form.get('numer_ksiegiw')
+        kode = court_kode(numer_ksiegiw)
         result = decoding(numer_ksiegiw, encoding_key_for_kw)
         sad = find_court(numer_ksiegiw)
     return render_template("index.html", result = result, sad = sad, numer_ksiegiw=numer_ksiegiw)
