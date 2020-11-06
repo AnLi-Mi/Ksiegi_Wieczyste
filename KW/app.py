@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request
+import sady
 
 
 app=Flask(__name__)
@@ -70,11 +71,12 @@ def decoding(numer_ksiegi, decoder):
     # after specific multiplications
     return sum(total)%10
 
-# request user to enter the string with base of Ksiega Wieczysta
-#numer_ksiegiw=input("Wpisz number księgi wieczystej: ")
+def find_court(num_ksiegi):
+    kode=num_ksiegi[:4]
+    kode=kode.upper()
+    return sady.kod_sad_dict[kode]
 
 
-#print (f"Cyfra kontrolna księgi wieczystej o numerze {numer_ksiegiw} to: {decoding(numer_ksiegiw, encoding_key_for_kw)}")
 
 if __name__ == "__main__":
     app.run(debug=True)
