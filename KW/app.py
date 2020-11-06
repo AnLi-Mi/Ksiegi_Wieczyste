@@ -9,10 +9,17 @@ app=Flask(__name__)
 def home():
     result = ''
     numer_ksiegiw = ''
+    sad = ''
+    error=''    
     if request.method=="POST" and 'numer_ksiegiw' in request.form:
         numer_ksiegiw = request.form.get('numer_ksiegiw')
-        result = decoding(numer_ksiegiw, encoding_key_for_kw)
-    return render_template("index.html", result = result, numer_ksiegiw=numer_ksiegiw)
+        kode = court_kode(numer_ksiegiw)
+        if kode in sady.list_kod:
+            result = decoding(numer_ksiegiw, encoding_key_for_kw)
+            sad = find_court(numer_ksiegiw)
+        else:
+            error= "Błędny numer"
+    return render_template("index.html", error = error, result = result, sad = sad, numer_ksiegiw=numer_ksiegiw)
 
 # creating the dictionary with letters and digits as keys and thier encoding result as values
 def encoding_key_for_kw():
@@ -69,12 +76,17 @@ def decoding(numer_ksiegi, decoder):
 
     # return the rest from dividing by 10 the sum of all numbers
     # after specific multiplications
-    return sum(total)%10
+    return f'Cyfra kontrolna: {sum(total)%10}'
+
+
+def court_kode(num_ksiegi):
+    kode=num_ksiegi[:4]
+    return kode.upper()
+    
 
 def find_court(num_ksiegi):
-    kode=num_ksiegi[:4]
-    kode=kode.upper()
-    return sady.kod_sad_dict[kode]
+    kode = court_kode(num_ksiegi)
+    return f'Lokalizacja sądu: {sady.kod_sad_dict[kode]}'
 
 
 
