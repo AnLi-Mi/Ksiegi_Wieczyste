@@ -9,10 +9,13 @@ app=Flask(__name__)
 def home():
     result = ''
     numer_ksiegiw = ''
+    sad = ''
+    
     if request.method=="POST" and 'numer_ksiegiw' in request.form:
         numer_ksiegiw = request.form.get('numer_ksiegiw')
         result = decoding(numer_ksiegiw, encoding_key_for_kw)
-    return render_template("index.html", result = result, numer_ksiegiw=numer_ksiegiw)
+        sad = find_court(numer_ksiegiw)
+    return render_template("index.html", result = result, sad = sad, numer_ksiegiw=numer_ksiegiw)
 
 # creating the dictionary with letters and digits as keys and thier encoding result as values
 def encoding_key_for_kw():
