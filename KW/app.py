@@ -14,7 +14,7 @@ def home():
     if request.method=="POST" and 'numer_ksiegiw' in request.form:
         numer_ksiegiw = request.form.get('numer_ksiegiw')
         kode = court_kode(numer_ksiegiw)
-        if kode in sady.sad_kod_dict:
+        if kode in sady.list_kod:
             result = decoding(numer_ksiegiw, encoding_key_for_kw)
             sad = find_court(numer_ksiegiw)
         else:
@@ -76,7 +76,7 @@ def decoding(numer_ksiegi, decoder):
 
     # return the rest from dividing by 10 the sum of all numbers
     # after specific multiplications
-    return sum(total)%10
+    return f'Cyfra kontrolna: {sum(total)%10}'
 
 
 def court_kode(num_ksiegi):
@@ -86,7 +86,7 @@ def court_kode(num_ksiegi):
 
 def find_court(num_ksiegi):
     kode = court_kode(num_ksiegi)
-    return sady.kod_sad_dict[kode]
+    return f'Lokalizacja sądu: {sady.kod_sad_dict[kode]}'
 
 
 
