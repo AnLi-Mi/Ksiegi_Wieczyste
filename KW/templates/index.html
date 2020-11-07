@@ -19,10 +19,15 @@
     </div>
 
     <div>
-        {% if numer_ksiegiw, result, sad %}
+        {% if numer_ksiegiw, result, sad, edited_number %}
         <p >    {{result}}</br>
 
             {{sad}} </p>
+
+            {{kode}}
+
+            {{numer_ksiegiw}}
+            {{edited_number}}
         {% endif %}
 
         {% if error %}

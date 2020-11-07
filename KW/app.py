@@ -10,16 +10,20 @@ def home():
     result = ''
     numer_ksiegiw = ''
     sad = ''
-    error=''    
+    error=''
+    kode = ''
+    edited_number = ''
     if request.method=="POST" and 'numer_ksiegiw' in request.form:
         numer_ksiegiw = request.form.get('numer_ksiegiw')
         kode = court_kode(numer_ksiegiw)
-        if kode in sady.list_kod:
+        edited_number=numer_ksiegiw.replace(" ", "")
+        edited_number=edited_number.replace("/", "")
+        if kode in sady.list_kod and len(edited_number)<= 12 :
             result = decoding(numer_ksiegiw, encoding_key_for_kw)
             sad = find_court(numer_ksiegiw)
         else:
             error= "Błędny numer"
-    return render_template("index.html", error = error, result = result, sad = sad, numer_ksiegiw=numer_ksiegiw)
+    return render_template("index.html", kode=kode, edited_number=edited_number, error = error, result = result, sad = sad, numer_ksiegiw=numer_ksiegiw)
 
 # creating the dictionary with letters and digits as keys and thier encoding result as values
 def encoding_key_for_kw():
@@ -53,6 +57,11 @@ def decoding(numer_ksiegi, decoder):
     numer_ksiegi=numer_ksiegi.replace(" ", "")
     numer_ksiegi=numer_ksiegi.replace("/", "")
     numer_ksiegi=numer_ksiegi.lower()
+    zeros = (12-len(numer_ksiegi))*"0"
+    numer_ksiegi=numer_ksiegi[:4] + zeros + numer_ksiegi[4:]
+    
+
+     
 
     # encoding the entered string using the encoding_key_for_kw()
     decoded_elements = []
@@ -76,7 +85,7 @@ def decoding(numer_ksiegi, decoder):
 
     # return the rest from dividing by 10 the sum of all numbers
     # after specific multiplications
-    return f'Cyfra kontrolna: {sum(total)%10}'
+    return numer_ksiegi
 
 
 def court_kode(num_ksiegi):
