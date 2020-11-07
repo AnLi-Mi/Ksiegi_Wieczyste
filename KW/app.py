@@ -57,11 +57,10 @@ def decoding(numer_ksiegi, decoder):
     numer_ksiegi=numer_ksiegi.replace(" ", "")
     numer_ksiegi=numer_ksiegi.replace("/", "")
     numer_ksiegi=numer_ksiegi.lower()
+    diference = 12-len(numer_ksiegi)
+    numer_ksiegi=numer_ksiegi + diference*"0"    
 
-  #  if len(numer_ksiegi[4:])<8:
-
-   #     return "to short!"
-           
+     
 
     # encoding the entered string using the encoding_key_for_kw()
     decoded_elements = []
@@ -85,7 +84,7 @@ def decoding(numer_ksiegi, decoder):
 
     # return the rest from dividing by 10 the sum of all numbers
     # after specific multiplications
-    return f'Cyfra kontrolna: {sum(total)%10}'
+    return numer_ksiegi
 
 
 def court_kode(num_ksiegi):
