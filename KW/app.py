@@ -58,7 +58,8 @@ def decoding(numer_ksiegi, decoder):
     numer_ksiegi=numer_ksiegi.replace("/", "")
     numer_ksiegi=numer_ksiegi.lower()
     zeros = (12-len(numer_ksiegi))*"0"
-    numer_ksiegi=numer_ksiegi + zeros    
+    numer_ksiegi=numer_ksiegi[:4] + zeros + numer_ksiegi[4:]
+    
 
      
 
