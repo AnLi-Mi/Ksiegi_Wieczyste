@@ -21,8 +21,10 @@ def home():
         if kode in sady.list_kod and len(edited_number)<= 12 :
             result = decoding(numer_ksiegiw, encoding_key_for_kw)
             sad = find_court(numer_ksiegiw)
+        elif len(edited_number)>12:
+            error= "Wpisany numer księgi jest za długi"
         else:
-            error= "Błędny numer"
+            error= "Wpisany numer księgi jest nieprawidłowy"
     return render_template("index.html", kode=kode, edited_number=edited_number, error = error, result = result, sad = sad, numer_ksiegiw=numer_ksiegiw)
 
 # creating the dictionary with letters and digits as keys and thier encoding result as values
