@@ -21,8 +21,10 @@ def home():
         if kode in sady.list_kod and len(edited_number)<= 12 :
             result = decoding(numer_ksiegiw, encoding_key_for_kw)
             sad = find_court(numer_ksiegiw)
+        elif len(edited_number)>12:
+            error= "Wpisany numer księgi jest za długi"
         else:
-            error= "Błędny numer"
+            error= "Wpisany numer księgi jest nieprawidłowy"
     return render_template("index.html", kode=kode, edited_number=edited_number, error = error, result = result, sad = sad, numer_ksiegiw=numer_ksiegiw)
 
 # creating the dictionary with letters and digits as keys and thier encoding result as values
@@ -59,9 +61,7 @@ def decoding(numer_ksiegi, decoder):
     numer_ksiegi=numer_ksiegi.lower()
     zeros = (12-len(numer_ksiegi))*"0"
     numer_ksiegi=numer_ksiegi[:4] + zeros + numer_ksiegi[4:]
-    
-
-     
+       
 
     # encoding the entered string using the encoding_key_for_kw()
     decoded_elements = []
@@ -85,7 +85,7 @@ def decoding(numer_ksiegi, decoder):
 
     # return the rest from dividing by 10 the sum of all numbers
     # after specific multiplications
-    return numer_ksiegi
+    return f"Cyfra kontrolna księgi wieczystej {(numer_ksiegi[:4] + '/' + numer_ksiegi[4:]).upper()!r}: {sum(total)%10}"
 
 
 def court_kode(num_ksiegi):

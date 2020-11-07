@@ -13,7 +13,7 @@
     <div>
         <form style="font-weight: 700; padding-top: 30px;" class="pure-form" method='POST' action='/'>
             Wpisz numer księgi wieczystej:</br></br>
-            <input style="margin-left: auto; margin-right: auto;"class="pure-input-rounded" name="numer_ksiegiw" type=text></br></br>
+            <input style="margin-left: auto; margin-right: auto;"class="pure-input-rounded" name="numer_ksiegiw" type=text placeholder="____/________"></br></br>
             <button class="button-warning" type='submit' value='submit'> Sprawdź </button>
         </form> </br></br>
     </div>
@@ -24,10 +24,6 @@
 
             {{sad}} </p>
 
-            {{kode}}
-
-            {{numer_ksiegiw}}
-            {{edited_number}}
         {% endif %}
 
         {% if error %}
