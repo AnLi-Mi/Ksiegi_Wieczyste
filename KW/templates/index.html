@@ -13,7 +13,13 @@
     <div>
         <form style="font-weight: 700; padding-top: 30px;" class="pure-form" method='POST' action='/'>
             Wpisz numer księgi wieczystej:</br></br>
-            <input style="margin-left: auto; margin-right: auto;"class="pure-input-rounded" name="numer_ksiegiw" type=text placeholder="____/________"></br></br>
+            <select name="court">
+                  <option value="WL1A">WL1A</option>
+                  <option value="SU1A">SU1A</option>
+                  <option value="OL1Y">OL1Y</option>
+                  <option value="PT1B">PT1B</option>
+            </select> /
+            <input style="margin-left: auto; margin-right: auto;"class="pure-input-rounded" name="numer_ksiegiw" type=text></br></br>
             <button class="button-warning" type='submit' value='submit'> Sprawdź </button>
         </form> </br></br>
     </div>
@@ -22,7 +28,9 @@
         {% if numer_ksiegiw, result, sad, edited_number %}
         <p >    {{result}}</br>
 
-            {{sad}} </p>
+            {{sad}}
+
+        </p>
 
         {% endif %}
 
@@ -30,5 +38,8 @@
             {{error}}
         {% endif %}
 
+        {% if court %}
+            {{court}}
+        {% endif %}
     </div>
 </body>

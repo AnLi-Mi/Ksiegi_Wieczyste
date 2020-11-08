@@ -13,8 +13,10 @@ def home():
     error=''
     kode = ''
     edited_number = ''
+    court = ''
     if request.method=="POST" and 'numer_ksiegiw' in request.form:
         numer_ksiegiw = request.form.get('numer_ksiegiw')
+        court = request.form.get('court')
         kode = court_kode(numer_ksiegiw)
         edited_number=numer_ksiegiw.replace(" ", "")
         edited_number=edited_number.replace("/", "")
@@ -25,7 +27,7 @@ def home():
             error= "Wpisany numer księgi jest za długi"
         else:
             error= "Wpisany numer księgi jest nieprawidłowy"
-    return render_template("index.html", kode=kode, edited_number=edited_number, error = error, result = result, sad = sad, numer_ksiegiw=numer_ksiegiw)
+    return render_template("index.html", court = court, kode=kode, edited_number=edited_number, error = error, result = result, sad = sad, numer_ksiegiw=numer_ksiegiw)
 
 # creating the dictionary with letters and digits as keys and thier encoding result as values
 def encoding_key_for_kw():
