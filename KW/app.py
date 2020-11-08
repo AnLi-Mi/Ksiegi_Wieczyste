@@ -18,12 +18,15 @@ def home():
         numer_ksiegiw = request.form.get('numer_ksiegiw')
         court = request.form.get('court')
         full_numer = court+numer_ksiegiw
-        kode = court_kode(numer_ksiegiw)
+        kode = court_kode(full_numer)
         edited_number=full_numer.replace(" ", "")
         edited_number=edited_number.replace("/", "")
-        if len(edited_number)<= 12 :
+        if kode in sady.list_kod and len(edited_number)<= 12 :
             result = decoding(edited_number, encoding_key_for_kw)
             sad = find_court(edited_number)
+        elif kode not in sady.list_kod:
+            error= "Nie został wybrany kod sądu"
+
         else:
             error= "Wpisany numer księgi jest za długi"
         
