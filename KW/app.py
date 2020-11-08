@@ -17,16 +17,16 @@ def home():
     if request.method=="POST" and 'numer_ksiegiw' in request.form:
         numer_ksiegiw = request.form.get('numer_ksiegiw')
         court = request.form.get('court')
+        full_numer = court+numer_ksiegiw
         kode = court_kode(numer_ksiegiw)
-        edited_number=numer_ksiegiw.replace(" ", "")
+        edited_number=full_numer.replace(" ", "")
         edited_number=edited_number.replace("/", "")
-        if kode in sady.list_kod and len(edited_number)<= 12 :
-            result = decoding(numer_ksiegiw, encoding_key_for_kw)
-            sad = find_court(numer_ksiegiw)
-        elif len(edited_number)>12:
-            error= "Wpisany numer księgi jest za długi"
+        if len(edited_number)<= 12 :
+            result = decoding(edited_number, encoding_key_for_kw)
+            sad = find_court(edited_number)
         else:
-            error= "Wpisany numer księgi jest nieprawidłowy"
+            error= "Wpisany numer księgi jest za długi"
+        
     return render_template("index.html", court = court, kode=kode, edited_number=edited_number, error = error, result = result, sad = sad, numer_ksiegiw=numer_ksiegiw)
 
 # creating the dictionary with letters and digits as keys and thier encoding result as values
