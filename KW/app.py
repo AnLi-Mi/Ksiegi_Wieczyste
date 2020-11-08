@@ -24,15 +24,13 @@ def home():
         edited_full_books_code=edited_full_books_code.replace("/", "")
 
         try:
-            if int(numbers) and court_code in sady.list_kod and len(edited_full_books_code)<= 12 :
+            if (int(numbers) or numbers in ['0', '00','000','0000','00000','000000','0000000','00000000']) and court_code in sady.list_kod and len(edited_full_books_code)<= 12 :
                 control_digit = decoding(edited_full_books_code, encoding_key_for_kw)
                 court_location = find_court(court_code)
             elif court_code not in sady.list_kod:
                 error= "Błąd - Nie został wybrany identyfikator sądu prowadzącego księgę"
             elif len(edited_full_books_code)> 12:
                 error= "Błąd - Wpisany identyfikator księgi jest za długi"
-            else:
-                error = "Błąd"
         except ValueError: 
                 error = "Błąd - Identyfikator księgi składa się tylko z cyfr"
 
