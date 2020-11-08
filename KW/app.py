@@ -17,7 +17,7 @@ def home():
     if request.method=="POST" and 'numer_ksiegiw' in request.form:
         court_code = request.form.get('court')
         numbers = request.form.get('numer_ksiegiw')
-
+     
         full_books_code = court_code+numbers
             
         edited_full_books_code=full_books_code.replace(" ", "")
@@ -29,8 +29,10 @@ def home():
                 court_location = find_court(court_code)
             elif court_code not in sady.list_kod:
                 error= "Błąd - Nie został wybrany identyfikator sądu prowadzącego księgę"
-            else:
+            elif len(edited_full_books_code)> 12:
                 error= "Błąd - Wpisany identyfikator księgi jest za długi"
+            else:
+                error = "Błąd"
         except ValueError: 
                 error = "Błąd - Identyfikator księgi składa się tylko z cyfr"
 
