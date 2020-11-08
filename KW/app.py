@@ -7,30 +7,31 @@ app=Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
 def home():
-    result = ''
-    numbers = ''
-    sad = ''
-    error=''
-    kode = ''
-    edited_books_code = ''
+    control_digit = ''
+    court_location = ''
     court_code = ''
+    numbers = ''
+    error=''
+    edited_full_books_code = ''
+    
     if request.method=="POST" and 'numer_ksiegiw' in request.form:
         court_code = request.form.get('court')
         numbers = request.form.get('numer_ksiegiw')
-        full_books_code = court_code+numbers
-        kode = court_kode(full_books_code)
-        edited_books_code=full_books_code.replace(" ", "")
-        edited_books_code=edited_books_code.replace("/", "")
-        if kode in sady.list_kod and len(edited_books_code)<= 12 :
-            result = decoding(edited_books_code, encoding_key_for_kw)
-            sad = find_court(edited_books_code)
-        elif kode not in sady.list_kod:
-            error= "Nie został wybrany kod sądu"
 
+        full_books_code = court_code+numbers
+            
+        edited_full_books_code=full_books_code.replace(" ", "")
+        edited_full_books_code=edited_full_books_code.replace("/", "")
+        
+        if court_code in sady.list_kod and len(edited_full_books_code)<= 12 :
+            control_digit = decoding(edited_full_books_code, encoding_key_for_kw)
+            court_location = find_court(court_code)
+        elif court_code not in sady.list_kod:
+            error= "Nie został wybrany kod sądu"
         else:
             error= "Wpisany numer księgi jest za długi"
         
-    return render_template("index.html", court_code = court_code, kode=kode, edited_books_code=edited_books_code, error = error, result = result, sad = sad, numbers=numbers)
+    return render_template("index.html", court_code = court_code, edited_full_books_code=edited_full_books_code, error = error, control_digit = control_digit, court_location = court_location, numbers=numbers)
 
 # creating the dictionary with letters and digits as keys and thier encoding result as values
 def encoding_key_for_kw():
@@ -92,14 +93,7 @@ def decoding(numer_ksiegi, decoder):
     # after specific multiplications
     return f"Cyfra kontrolna księgi wieczystej {(numer_ksiegi[:4] + '/' + numer_ksiegi[4:]).upper()!r}: {sum(total)%10}"
 
-
-def court_kode(num_ksiegi):
-    kode=num_ksiegi[:4]
-    return kode.upper()
-    
-
-def find_court(num_ksiegi):
-    kode = court_kode(num_ksiegi)
+def find_court(kode):
     return f'Lokalizacja sądu: {sady.kod_sad_dict[kode]}'
 
 

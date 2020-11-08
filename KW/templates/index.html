@@ -26,10 +26,10 @@
     </div>
 
     <div>
-        {% if numer_ksiegiw, result, sad, edited_number %}
-        <p >    {{result}}</br>
+        {% if control_digit, court_location %}
+        <p >    {{control_digit}}</br>
 
-            {{sad}}
+            {{court_location}}
 
         </p>
 
@@ -39,8 +39,6 @@
             {{error}}
         {% endif %}
 
-        {% if court %}
-            {{court}}
-        {% endif %}
+
     </div>
 </body>
