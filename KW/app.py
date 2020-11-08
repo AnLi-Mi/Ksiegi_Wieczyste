@@ -8,29 +8,29 @@ app=Flask(__name__)
 @app.route('/', methods=['GET', 'POST'])
 def home():
     result = ''
-    numer_ksiegiw = ''
+    numbers = ''
     sad = ''
     error=''
     kode = ''
-    edited_number = ''
-    court = ''
+    edited_books_code = ''
+    court_code = ''
     if request.method=="POST" and 'numer_ksiegiw' in request.form:
-        numer_ksiegiw = request.form.get('numer_ksiegiw')
-        court = request.form.get('court')
-        full_numer = court+numer_ksiegiw
-        kode = court_kode(full_numer)
-        edited_number=full_numer.replace(" ", "")
-        edited_number=edited_number.replace("/", "")
-        if kode in sady.list_kod and len(edited_number)<= 12 :
-            result = decoding(edited_number, encoding_key_for_kw)
-            sad = find_court(edited_number)
+        court_code = request.form.get('court')
+        numbers = request.form.get('numer_ksiegiw')
+        full_books_code = court_code+numbers
+        kode = court_kode(full_books_code)
+        edited_books_code=full_books_code.replace(" ", "")
+        edited_books_code=edited_books_code.replace("/", "")
+        if kode in sady.list_kod and len(edited_books_code)<= 12 :
+            result = decoding(edited_books_code, encoding_key_for_kw)
+            sad = find_court(edited_books_code)
         elif kode not in sady.list_kod:
             error= "Nie został wybrany kod sądu"
 
         else:
             error= "Wpisany numer księgi jest za długi"
         
-    return render_template("index.html", court = court, kode=kode, edited_number=edited_number, error = error, result = result, sad = sad, numer_ksiegiw=numer_ksiegiw)
+    return render_template("index.html", court_code = court_code, kode=kode, edited_books_code=edited_books_code, error = error, result = result, sad = sad, numbers=numbers)
 
 # creating the dictionary with letters and digits as keys and thier encoding result as values
 def encoding_key_for_kw():
