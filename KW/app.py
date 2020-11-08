@@ -22,14 +22,18 @@ def home():
             
         edited_full_books_code=full_books_code.replace(" ", "")
         edited_full_books_code=edited_full_books_code.replace("/", "")
-        
-        if court_code in sady.list_kod and len(edited_full_books_code)<= 12 :
-            control_digit = decoding(edited_full_books_code, encoding_key_for_kw)
-            court_location = find_court(court_code)
-        elif court_code not in sady.list_kod:
-            error= "Nie został wybrany kod sądu"
-        else:
-            error= "Wpisany numer księgi jest za długi"
+
+        try:
+            if int(numbers) and court_code in sady.list_kod and len(edited_full_books_code)<= 12 :
+                control_digit = decoding(edited_full_books_code, encoding_key_for_kw)
+                court_location = find_court(court_code)
+            elif court_code not in sady.list_kod:
+                error= "Błąd - Nie został wybrany identyfikator sądu prowadzącego księgę"
+            else:
+                error= "Błąd - Wpisany identyfikator księgi jest za długi"
+        except ValueError: 
+                error = "Błąd - Identyfikator księgi składa się tylko z cyfr"
+
         
     return render_template("index.html", court_code = court_code, edited_full_books_code=edited_full_books_code, error = error, control_digit = control_digit, court_location = court_location, numbers=numbers)
 
