@@ -11,8 +11,8 @@
 
 <body>
     <div>
-        <form style="font-weight: 700; padding-top: 30px;" class="pure-form" method='POST' action='/'>
-            Wpisz numer księgi wieczystej:</br></br>
+        <form style="font-weight: 700; padding-top: 60px;" class="pure-form" method='POST' action='/'>
+            Wpisz numer księgi wieczystej:</br></br></br></br>
             <select name="court" required>
                 <option value="WL1A">WL1A</option>
                 <option value="SU1A">SU1A</option>
@@ -362,24 +362,24 @@
                 <option value="PL2M">PL2M</option>
                 <option value="PL1Z">PL1Z</option>
                 <option value="BB1Z">BB1Z</option>
-            </select> /
-            <input style="margin-left: auto; margin-right: auto;"class="pure-input-rounded" name="numer_ksiegiw" type="text" required ></br></br>
+            </select>  /
+            <input style="margin-left: auto; margin-right: auto;" name="numer_ksiegiw" type="text" required ></br></br></br></br>
             <button class="button-warning" type='submit' value='submit'> Sprawdź </button>
         </form> </br></br>
     </div>
 
     <div>
         {% if control_digit, court_location %}
-        <p >    {{control_digit}}</br>
 
+            {{control_digit}}</br></br>
             {{court_location}}
-
-        </p>
 
         {% endif %}
 
         {% if error %}
+
             {{error}}
+            
         {% endif %}
 
 
