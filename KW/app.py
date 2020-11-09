@@ -47,9 +47,9 @@ def encoding_key_for_kw():
 
     # each letter's result after encoding is it's position in aphabet +10
     # (staring from 1, not 0)
-    for letter in 'abcdefghijklmnoprstuwxyz':
+    for letter in 'xabcdefghijklmnoprstuwyz':
         entered_element.append(letter)
-        returned_element.append('abcdefghijklmnoprstuwxyz'.index(letter)+11)
+        returned_element.append('xabcdefghijklmnoprstuwyz'.index(letter)+10)
 
     # zipping both lists to create a dictionary of a letter as a key
     # and it's numerical representation after encoding as a value
