@@ -6,11 +6,6 @@ padding-top: 10px;
 padding-bottom: 10px;
 }
 
-.result {
-    font-size: 16px;
-    color: black;
-
-}
 
 h1 {
     color: black;
@@ -30,6 +25,8 @@ h1 {
     align-self: center;
     margin-left: auto;
     margin-right: auto;
+    border-radius: 4px;
+    
 }
 
 .button-warning {

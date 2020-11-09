@@ -17,6 +17,11 @@ kod_sad_dict = dict(zip(list_kod, list_sady))
 print(list_kod)
 
 
+def html_string(list):
+    for kod in list:
+        print (f'<option value="{kod}">{kod}</option>')
+
+
 
 
 
