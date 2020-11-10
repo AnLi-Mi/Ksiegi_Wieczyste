@@ -28,7 +28,7 @@ def home():
                 control_digit = decoding(edited_full_books_code, encoding_key_for_kw)
                 court_location = find_court(court_code)
             elif court_code not in sady.list_kod:
-                error= "Błąd - Nie został wybrany identyfikator sądu prowadzącego księgę"
+                error= "Błąd - Błędny identyfikator sądu prowadzącego księgę"
             elif len(edited_full_books_code)> 12:
                 error= "Błąd - Wpisany identyfikator księgi jest za długi"
         except ValueError: 
