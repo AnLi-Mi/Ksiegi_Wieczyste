@@ -23,6 +23,9 @@ def html_string(list):
         print (f'<option value="{kod}">{kod}</option>')
 
 
+def html_string2(list):
+    for kod in list:
+        print (f'<option value="{kod}">')
 
 
 
