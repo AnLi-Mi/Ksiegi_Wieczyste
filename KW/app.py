@@ -16,6 +16,7 @@ def home():
     
     if request.method=="POST" and 'numer_ksiegiw' in request.form:
         court_code = request.form.get('court')
+        court_code = court_code.upper()
         numbers = request.form.get('numer_ksiegiw')
      
         full_books_code = court_code+numbers
